@@ -14,9 +14,10 @@ export const AuthContextProvider = (props) => {
     localStorage.setItem("token", token)
     const userIdInLocalStorage = localStorage.getItem("userId");
     const emailInLocalStorage = localStorage.getItem("email");
+    const tokenFromLocalStorage = localStorage.getItem("token");
     setAuthState(prevState => ({
       ...prevState,
-      token: token,
+      token: tokenFromLocalStorage,
       userId: userIdInLocalStorage,
       email: emailInLocalStorage
     }));
@@ -24,8 +25,6 @@ export const AuthContextProvider = (props) => {
   };
 
   const logout = () => {
-    // localStorage.removeItem("userId");
-    // localStorage.removeItem("email");
     localStorage.clear();
     setAuthState(prevState => ({
       ...prevState,
