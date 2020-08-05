@@ -6,8 +6,8 @@ import './App.css';
  * IMPORTING SCREENS/COMPONENTS
  */
 import NavBar from './components/Navigation/NavBar';
-import Auth from "./screens/Auth";
-import Tasks from "./screens/Tasks";
+import Auth from "./screens/Auth/Auth";
+import Tasks from "./screens/Tasks/Tasks";
 
 import { AuthContextProvider } from './context/auth-context';
 

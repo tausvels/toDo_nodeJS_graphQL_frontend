@@ -1,12 +1,12 @@
 import React, { useContext, useState, useRef, useEffect } from 'react';
-import { AuthContext } from '../context/auth-context';
-import Modal from '../components/Modal/Modal';
-import Backdrop from '../components/Backdrop/Backdrop';
+import { AuthContext } from '../../context/auth-context';
+import Modal from '../../components/Modal/Modal';
+import Backdrop from '../../components/Backdrop/Backdrop';
 
 import './tasks.css';
-import TaskList from '../components/Tasks/TaskList';
-import Spinner from '../components/Spinner/Spinner';
-import TaskForm from '../components/TaskForm/TaskForm';
+import TaskList from '../../components/Tasks/TaskList';
+import Spinner from '../../components/Spinner/Spinner';
+import TaskForm from '../../components/TaskForm/TaskForm';
 
 function Tasks(props) {
   const {match: {params}} = props;
@@ -196,10 +196,6 @@ function Tasks(props) {
     arr.splice(ind, 1, obj);
     const newArr = arr;
     return newArr;
-  }
-
-  const filterTasks = async () => {
-
   }
 
   useEffect(() => {

@@ -11,6 +11,7 @@ export const AuthContextProvider = (props) => {
   const login = (token, userId, email, tokenExpiration) => {
     localStorage.setItem("userId", userId);
     localStorage.setItem("email", email);
+    localStorage.setItem("token", token)
     const userIdInLocalStorage = localStorage.getItem("userId");
     const emailInLocalStorage = localStorage.getItem("email");
     setAuthState(prevState => ({
