@@ -44,7 +44,7 @@ function Auth(props) {
       const result = await fetch("http://localhost:3001/graphql", {
       method: "POST",
       body: JSON.stringify(requestBody),
-      headers: {  "Content-type": "application/json"  }
+      headers: {  "Content-Type": "application/json"  }
     });
       if (result.status !== 200 && result.status !== 201) {console.log('I have failed'); throw new Error ('Failed')}
       

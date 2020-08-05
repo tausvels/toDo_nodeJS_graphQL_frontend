@@ -23,8 +23,9 @@ export const AuthContextProvider = (props) => {
   };
 
   const logout = () => {
-    localStorage.removeItem("userId");
-    localStorage.removeItem("email");
+    // localStorage.removeItem("userId");
+    // localStorage.removeItem("email");
+    localStorage.clear();
     setAuthState(prevState => ({
       ...prevState,
       token: null,

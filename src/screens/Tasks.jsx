@@ -84,12 +84,12 @@ function Tasks(props) {
     if (searchTerm) {
       requestBody = {
         query: `
-        query { filterTasks(filter:"${searchTerm}") {_id, title, description, date, category, creator {_id, email}} }
+        query { filterTasksBy(filter:"${searchTerm}") {_id, title, description, date, category, creator {_id, email}} }
       `
     }
     } else {
       requestBody = {query: `
-      query {tasks { _id, title, description, date, category, creator {_id, email} } } `
+      query {getAllTasks { _id, title, description, date, category, creator {_id, email} } } `
     };
     }
     try {
@@ -99,13 +99,13 @@ function Tasks(props) {
       headers: {  "Content-type": "application/json"  }
     });
       if (result.status !== 200 && result.status !== 201) {
-        console.log('I have failed'); 
+        console.log('Check query string because I have failed to bring in the data!'); 
         throw new Error ('Failed')
       }
-      const resultBody = await result.json();
+      const resultBody = await result.json();console.log(resultBody)
       // const allTasks = resultBody.data.tasks;
       let allTasks;
-      if (searchTerm) {allTasks = resultBody.data.filterTasks} else {allTasks = resultBody.data.tasks}
+      if (searchTerm) {allTasks = resultBody.data.filterTasksBy} else {allTasks = resultBody.data.getAllTasks}
       setTasks(allTasks);
       setIsLoading(false);
     } catch (err) {
@@ -119,7 +119,7 @@ function Tasks(props) {
     // const taskSelected = tasks.find(task => task._id === taskId);
     const requestBody = 
     {
-      query: `mutation { cancelTask(taskId:"${taskId}") {_id, title, description, date, category }}`
+      query: `mutation { deleteTask(taskId:"${taskId}") {_id, title, description, date, category }}`
     }
     try {
       const result = await fetch("http://localhost:3001/graphql", {
@@ -136,7 +136,7 @@ function Tasks(props) {
       } 
       const resultBody = await result.json();
       console.log('result body after delete --->> ',resultBody)
-      if (resultBody.data.cancelTask._id !== taskId) {
+      if (resultBody.data.deleteTask._id !== taskId) {
         console.log('Failed to delete')
         throw new Error ('Failed to delete')
       }
